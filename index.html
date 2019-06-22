@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- 想實行的功能是點擊熱門搜尋的標籤，會抓出不同的資料 -->
     <style>
     a{
         text-decoration: none;
-     
     }
-    
-    
     </style>
 </head>
 <body>
@@ -23,16 +21,10 @@
             <a class="tag" href="javascript:;" target="_blank">館長</a>
             <a class="tag" href="javascript:;" target="_blank">線上課程</a>
         </p>
-        <div class="search_list">
-                <!-- <div class="item">
-                    <a href="javascript:;" target="_blank" class="title">台灣媽祖信仰- 维基百科，自由的百科全书</a>
-                    <a href="javascript:;" target="_blank" class="link">https://zh.wikipedia.org/zh-tw/台灣媽祖信仰</a>
-                    <p>媽祖信仰是臺灣普遍民間信仰。早期移民多自華南渡海，心驚膽顫，且台灣四面環海，海上活動頻繁，海神媽祖婆成臺灣人重要精神託付。臺灣有媽祖廟510座以上，有 ...</p>
-                </div> -->
-        </div>
+        <div class="search_list"></div>
     </div>
 
-<!-- 想實行的效果是點擊熱門搜尋，會換不同的資料 -->
+
     <script>
     
 
@@ -117,7 +109,7 @@
             
         }
 
-        //  以下分開寫就失效
+        //  以下渲染的函式獨立出來寫就失效
         // function Domrender(){
         //     console.log(searchArr)
         //     html = '';
