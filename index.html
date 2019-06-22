@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- 想實行的功能是點擊熱門搜尋的標籤，會抓出不同的資料 -->
     <style>
+    .mid{
+       
+        width:500px;
+        margin: auto;
+    }
     a{
         text-decoration: none;
+    }
+    input {
+        border: 2px solid gray;
+        height:30px;
+        width: 150px;
     }
     </style>
 </head>
@@ -84,54 +93,48 @@
         var search_list = document.getElementsByClassName('search_list')[0];
         var tag = document.getElementsByClassName('tag');
         var searchArr = [];
+        var searchArr = searchData['線上課程'];
         var html = '';
+        
 
-       
         for(var s=0;s<tag.length;s++){
             tag[s].addEventListener('click',searchTag);
       
         }
 
-        // 可行
-        function searchTag(){
-            var title = this.innerHTML;
-            var searchArr = searchData[title]; 
+        function Domrender(){
             html = '';
             search_list.innerHTML = '';
             for(var i = 0; i < searchArr.length;i++){
                 html += '<div class="item">'
                 html += '<a href="javascript:;" target="_blank" class="title">'+searchArr[i].title+'</a>'
-                html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link" >'+searchArr[i].link+'</a>'
+                html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link">https://zh.wikipedia.org/zh-tw/台灣媽祖信仰</a>'
                 html += '<p>'+searchArr[i].text+'</p>'
                 html += '</div>'    
             }
             search_list.innerHTML = html;
-            
         }
 
-        //  以下渲染的函式獨立出來寫就失效
-        // function Domrender(){
-        //     console.log(searchArr)
-        //     html = '';
-        //     search_list.innerHTML = '';
-        //     for(var i = 0; i < searchArr.length;i++){
-        //         html += '<div class="item">'
-        //         html += '<a href="javascript:;" target="_blank" class="title">'+searchArr[i].title+'</a>'
-        //         html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link">https://zh.wikipedia.org/zh-tw/台灣媽祖信仰</a>'
-        //         html += '<p>'+searchArr[i].text+'</p>'
-        //         html += '</div>'    
-        //     }
-        //     search_list.innerHTML = html;
-        // }
+        function searchTag(){
+            searchArr = searchData[this.innerHTML]; 
+            search.value = this.innerHTML;
+            // 變數這裏要使用全域宣告
+            // 如果用 var searchArr 則要帶參數：searchTag(searchArr)、Domrender(searchArr)
+            Domrender(searchArr);
+        }
 
-        // function searchTag(){
-        //     var title = this.innerHTML;
-        //     var searchArr = searchData[title]; 
-        //     Domrender();
-        // }
+        search.addEventListener('keyup',function(){
+            searchArr = searchData[this.value];
+            
+            if( searchArr === undefined){
+                searchArr=[];
+            }
+            console.log(searchArr);
+            Domrender();
+        })
+      
+        Domrender(searchArr)
     </script>
-    <!-- 疑問 -->
-    <!-- 如果我把渲染的函式Domrender和searchTag的函式分開寫，Domrender吃不到searchArr的值，
-    就會失效，但如果寫在一起就可行，為什麼呢？ -->
+  
 </body>
 </html>
