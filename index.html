@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    a{
+        text-decoration: none;
+     
+    }
+    
+    
+    </style>
 </head>
 <body>
     <div class="mid">
@@ -24,7 +32,7 @@
         </div>
     </div>
 
-
+<!-- 想實行的效果是點擊熱門搜尋，會換不同的資料 -->
     <script>
     
 
@@ -92,27 +100,46 @@
       
         }
 
-        function Domrender(){
-            console.log(searchArr)
+        // 可行
+        function searchTag(){
+            var title = this.innerHTML;
+            var searchArr = searchData[title]; 
             html = '';
             search_list.innerHTML = '';
             for(var i = 0; i < searchArr.length;i++){
                 html += '<div class="item">'
                 html += '<a href="javascript:;" target="_blank" class="title">'+searchArr[i].title+'</a>'
-                html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link">https://zh.wikipedia.org/zh-tw/台灣媽祖信仰</a>'
+                html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link" >'+searchArr[i].link+'</a>'
                 html += '<p>'+searchArr[i].text+'</p>'
                 html += '</div>'    
             }
             search_list.innerHTML = html;
-        }
-
-    
-        function searchTag(){
-            var title = this.innerHTML;
-            var searchArr = searchData[title]; 
-            Domrender();
             
         }
+
+        //  以下分開寫就失效
+        // function Domrender(){
+        //     console.log(searchArr)
+        //     html = '';
+        //     search_list.innerHTML = '';
+        //     for(var i = 0; i < searchArr.length;i++){
+        //         html += '<div class="item">'
+        //         html += '<a href="javascript:;" target="_blank" class="title">'+searchArr[i].title+'</a>'
+        //         html += '<a href="' +searchArr[i].link+ 'target="_blank" class="link">https://zh.wikipedia.org/zh-tw/台灣媽祖信仰</a>'
+        //         html += '<p>'+searchArr[i].text+'</p>'
+        //         html += '</div>'    
+        //     }
+        //     search_list.innerHTML = html;
+        // }
+
+        // function searchTag(){
+        //     var title = this.innerHTML;
+        //     var searchArr = searchData[title]; 
+        //     Domrender();
+        // }
     </script>
+    <!-- 疑問 -->
+    <!-- 如果我把渲染的函式Domrender和searchTag的函式分開寫，Domrender吃不到searchArr的值，
+    就會失效，但如果寫在一起就可行，為什麼呢？ -->
 </body>
 </html>
